@@ -1,31 +1,13 @@
-// computer picks from list of Rock, Paper, Scissors
-// player inputs a move
-// goes through a function that checks if it is a valid option
-    // if option is NOT valid, return to prompt
-    //  if it is valid, goes to the playRound()
-// game function takes playerSection and computerSelection
-    /*
-    P - C
-
-    r - r = tie
-    p - r = player W
-    s - r = computer W
-
-
-    r - p = player W
-    p - p = tie
-    s - p = player W
-
-    r - s = player W
-    p - s = computer W
-    s - s = tie
-    */
-
+// ROCK PAPER SCISSORS
 
 // Declares variables
 const rock = "ROCK";
 const paper = "PAPER";
 const scissors = "SCISSORS";
+let winner;
+let loser;
+let playerPoint = 0;
+let computerPoint = 0;
 
 
 // Generates random selection for rock, paper, scissors
@@ -52,38 +34,64 @@ function userPlay () {
     return playerInput;
 }
 
-
-
+// Takes player & computer selections and determines winner
 function playRound(computerSelection, playerSelection) {
     // gets computer & player selection 
     computerSelection = computerPlay();
     playerSelection = userPlay();
-    console.log(playerSelection, computerSelection);
+    
 
     // Winner when computer chooses ROCK:
     if (computerSelection === rock && playerSelection === rock) {
-        alert(`TIE: You both chose ${computerSelection}`);
+     
+        alert(`Tie round. Both chose rock. \n\nSCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint} `);
     } else if (computerSelection === rock && playerSelection === paper) {
-        alert(`YOU WIN!: Computer chose ${computerSelection}`);
+        playerPoint++;
+        alert(`You win! Paper beats rock. \n\nSCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint}`);
     } else if (computerSelection === rock && playerSelection === scissors) {
-        alert(`YOU LOSE: Computer chose ${computerSelection}`);
+        computerPoint++;
+        alert(`Computer wins. Rock beats scissors. \n\nSCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint} `);
     }
     // Winner when computer chooses PAPER
     else if (computerSelection === paper && playerSelection === rock) {
-        alert(`YOU LOSE: Computer chose ${computerSelection}`);
+        computerPoint++;
+        alert(`Computer wins. Paper beats rock. \n\nSCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint} `);
     } else if (computerSelection === paper && playerSelection === paper) {
-        alert(`TIE: You both chose ${computerSelection}`);
+        
+        alert(`Tie round. Both chose paper. \n\nSCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint}`);
     } else  if (computerSelection === paper && playerSelection === scissors) {
-        alert(`YOU WIN!: Computer chose ${computerSelection}`);
+       playerPoint++;
+       alert(`You win! Paper beats scissors. \n\nSCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint} `);
     }
     // Winner when computer chose SCISSORS
     else if (computerSelection === scissors && playerSelection === rock) {
-        alert(`YOU WIN!: Computer chose ${computerSelection}`);
+        playerPoint++;
+        alert(`You win! Rock beats scissors. \n\nSCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint}`);
     } else if (computerSelection === scissors && playerSelection === paper) {
-        alert(`YOU LOSE: Computer chose ${computerSelection}`);
+        computerPoint++;
+        alert(`Computer wins. Scissors beats paper. \n\nSCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint} `);
     } else if (computerSelection === scissors && playerSelection === scissors) {
-        alert(`TIE: You both chose ${computerSelection}`);
+     
+        alert(`Tie round. Both chose scissors. \n\nSCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint}`);
+    }
+    
+}
+
+// Runs the game through 5 rounds and determines winner & loser 
+function game() {
+    for (let i = 1; i < 6; i++) {
+        alert("Round " + [i]);
+        playRound();
+    }
+    if (playerPoint > computerPoint) {
+        alert(`YOU WIN :) \n\nFINAL SCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint}`);
+    } else if (playerPoint === computerPoint) {
+        alert(`TIE GAME :/ \n\nFINAL SCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint}`)
+    }
+    else {
+        alert(`YOU LOSE :( \n\nFINAL SCORE: PLAYER ${playerPoint} - COMPUTER ${computerPoint}`);
     }
 }
 
-playRound();
+// Initializes game 
+game();
