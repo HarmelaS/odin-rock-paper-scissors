@@ -94,4 +94,4 @@ function game() {
 }
 
 // Initializes game 
-game();
+// game();
