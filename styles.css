@@ -1,0 +1,177 @@
+body {
+  display: flex;
+  justify-content: center;
+  background-color: #212121;
+}
+
+.container {
+  display: flex;
+  background-color: #4c4c4c;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Roboto Mono", monospace;
+  max-width: 1300px;
+  width: 100%;
+  margin: 70px;
+}
+
+header {
+  background-color: #4ecca3;
+  width: 100%;
+  text-align: center;
+}
+
+#instruct {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.1em;
+  margin-top: 0px;
+  font-variant: small-caps;
+  color: #323232;
+}
+
+h1 {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 47px;
+  margin-bottom: 0px;
+  color: #ffffff;
+}
+
+#mainScore,
+.currentMove {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.break {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.para {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 53px;
+  margin: 20px 0px 0px 0px;
+  color: #4ecca3;
+}
+
+#playerScore,
+#computerScore,
+.dashBreak {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 95px;
+  color: #eeeeee;
+}
+
+#playerScore,
+#computerScore {
+  margin: 0px;
+  font-family: "Space Mono", monospace;
+}
+
+.computer,
+.player {
+  margin: 20px 0px;
+}
+
+.dashBreak {
+  transform: rotate(-90deg);
+}
+
+.currentMove {
+  gap: 100px;
+  margin: auto;
+  height: 200px;
+  padding: 0px;
+  align-items: center;
+  border: 3px solid #eeeeee;
+}
+
+.moveHidden {
+  display: none;
+}
+
+.moveShow {
+  display: block;
+}
+
+#winner {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 42px;
+  font-variant: small-caps;
+}
+
+.winnerLoser {
+  text-align: center;
+}
+
+.buttonSection {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  transition: 0.5s ease-in-out;
+}
+
+.choicePara {
+  font-family: "Space Mono", monospace;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #ffffff;
+}
+
+.optButton {
+  transition: 0.2s;
+}
+
+.optButton:hover {
+  transform: scale(1.1);
+  transition: 300ms ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    margin: 0px;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  #mainScore {
+    justify-content: center;
+  }
+
+  .currentMove {
+    width: 300px;
+    gap: 0px;
+  }
+
+  #winner {
+    margin-bottom: 0px;
+  }
+
+  .buttonSection {
+    transition: 0.5s ease-in-out;
+    transform: scale(0.6);
+  }
+}

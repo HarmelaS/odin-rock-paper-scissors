@@ -6,24 +6,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors</title>
     <!-- <script src="script.js"></script> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
     <script src="uiScript.js" defer></script>
 </head>
 <body>
-    <header><h1 id="header">Rock Paper Scissors Game</h1></header>
-    <div id="results"></div>
-    <main>
-        <div class="score">
-            <p>Player: </p><p id="playerScore"></p>
-            <p>Computer: </p><p id="computerScore"></p>
-        </div>
-        <div class="winner">
-            <p id="winner"></p>
-        </div>
-        <div class="buttonSection">
-            <button id="rockButton" class="decButton" value="rock">Rock</button>
-            <button id="paperButton" class="decButton" value="paper">Paper</button>
-            <button id="scissorsButton" class="decButton" value="scissors">Scissors</button>    
-        </div>
-    </main>
+    <div class="container">
+        <header>
+            <h1 id="header">Rock Paper Scissors</h1>
+            <div class="instructions">
+                <p id="instruct">make a move. first to five wins!</p>
+            </div>
+        </header>
+        <main>
+            <div id="mainScore">
+                <div class="player">
+                    <p class="para">Player </p><p id="playerScore"></p>
+                </div>
+                <div class="break">
+                    <div class="dashBreak">:</div>
+                </div>
+                <div class="computer">
+                    <p class="para">Computer </p><p id="computerScore"></p>
+                </div>
+            </div>
+
+            <div class="currentMove">
+                <div id="playerMove">
+
+                <!-- Rock svg -->
+                <svg id="rockMove" class="moveHidden" width="103" height="90" viewBox="0 0 103 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path id="playerRock" d="M83.6875 20.2823H84.6875V19.2823C84.6875 14.4601 88.6338 10.5697 93.4895 10.6416C98.2122 
+                    10.7133 102 14.685 102 19.443V46.2558C102 48.6965 101.523 51.114 100.571 53.3567L100.57 53.3586L90.7125 
+                    76.7169L90.7105 76.7217C89.6754 79.2101 89.125 81.8912 89.125 84.5973V85.1797C89.125 87.2971 87.4217 89 
+                    85.2969 89H37.0156C34.8908 89 33.1875 87.2971 33.1875 85.1797V83.834C33.1875 80.7956 31.8776 77.8934 29.6138 
+                    75.8769L29.6124 75.8758L7.14308 55.9332C7.14278 55.9329 7.14248 55.9326 7.14219 55.9324C3.23083 52.446 1 47.4755 
+                    1 42.259V28.9229C1 24.1014 4.94524 20.2113 9.8 20.2821C14.5282 20.3729 18.3125 24.3296 18.3125 
+                    29.0835V38.7442V39.1942L18.6493 39.4927L20.2587 40.9187L21.9219 42.3924V40.1702V12.8552C21.9219 8.03368 25.8672 
+                    4.14356 30.7221 4.21449C35.4502 4.30533 39.2344 8.26207 39.2344 13.0159V19.2823V20.2823H40.2344H41.8438H42.8438V19.2823V9.64169C42.8438 
+                    4.82014 46.7891 0.930014 51.644 1.00096C56.3721 1.09182 60.1562 5.04855 60.1562 9.80236V19.2823V20.2823H61.1562H62.7656H63.7656V19.2823V12.8552C63.7656 
+                    8.03368 67.711 4.14355 72.5659 4.21449C77.294 4.30533 81.0781 8.26207 81.0781 13.0159V19.2823V20.2823H82.0781H83.6875Z" stroke="none" stroke-width="2"/>
+                </svg>
+
+                <!-- Paper svg -->
+                <svg id="paperMove" class="moveHidden" xmlns="http://www.w3.org/2000/svg" width="88" height="100" viewBox="0 0 88 100" fill="none">
+                    <path id="playerPaper" d="M71.875 51H72.875V50V32.9668C72.875 29.1205 76.0256 25.9286 79.8209 26.0012C83.5216 26.0721 86.5 29.0945 86.4998 32.8125V62.1795C86.4998 
+                    64.9942 86.1742 67.7995 85.5295 70.5394L80.3522 92.5432C79.462 96.3263 76.0861 99 72.1998 99H33.608C32.287 99 30.9848 98.6875 29.8077 98.0881C28.6305 
+                    97.4886 27.6119 96.6193 26.8349 95.5509L2.30349 61.8195C2.30349 61.8195 2.30348 61.8195 2.30348 61.8195C0.0905955 58.7765 0.763358 54.5159 3.80599 
+                    52.3029C6.84918 50.0899 11.1097 50.7628 13.3225 53.8056L19.5037 62.3054L21.3125 64.7926V61.7172V15.625C21.3125 11.907 24.291 8.88457 27.9916 
+                    8.81372C31.7869 8.74112 34.9375 11.933 34.9375 15.7793V50V51H35.9375H37.5H38.5V50V7.81254C38.5 4.09453 41.4785 1.07207 45.1791 1.00122C48.9744 0.928619 
+                    52.125 4.12051 52.125 7.96684V50V51H53.125H54.6875H55.6875V50V15.4297C55.6875 11.7117 58.666 8.68925 62.3666 8.61841C66.1619 8.5458 69.3125 11.7377 
+                    69.3125 15.584V50V51H70.3125H71.875Z" stroke="none" stroke-width="2"/>
+                    </svg>
+
+                <!-- Scissors svg -->
+                <svg id="scissorsMove" class="moveHidden" width="104" height="92" viewBox="0 0 104 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path id="playerScissors" d="M51 34.406V35.3752H11.375C5.64498 35.3752 1 40.0201 1 45.7502C1 51.4802 5.64498 56.1252 11.375 56.1252H43.0002C39.4798 57.2803 36.9375 60.5933 
+                    36.9375 64.5002C36.9375 69.3673 40.8831 73.3127 45.75 73.3127H49.2502C45.7298 74.4678 43.1875 77.7808 43.1875 81.6877C43.1875 86.5548 47.1331 90.5002 52 
+                    90.5002H67.6249C68.3045 90.5002 68.9819 90.4216 69.6435 90.266L96.206 84.016C100.187 83.0794 103 79.5271 103 75.4377V28.5627C103 27.0091 102.589 25.4832 
+                    101.81 24.1395C101.03 22.7958 99.9089 21.6821 98.5601 20.9112L98.56 20.9112L76.685 8.41122C72.917 6.25786 68.1424 7.16868 65.4313 10.5573L65.4312 
+                    10.5573L61.0339 16.054L24.5438 1.72096C24.5438 1.72095 24.5437 1.72095 24.5437 1.72094C19.2106 -0.374108 13.1886 2.25049 11.0935 7.58373C8.99836 12.9167 
+                    11.6232 18.9387 16.9564 21.034L16.9565 21.034L51 34.406Z" stroke="none" stroke-width="2"/>
+                </svg>
+    
+    
+    
+                </div>
+                <div id="computerMove">
+
+                    <!-- Rock svg -->
+                    <svg id="rockMove-comp" class="moveHidden" width="103" height="90" viewBox="0 0 103 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="compRock" d="M83.6875 20.2823H84.6875V19.2823C84.6875 14.4601 88.6338 10.5697 93.4895 10.6416C98.2122 
+                        10.7133 102 14.685 102 19.443V46.2558C102 48.6965 101.523 51.114 100.571 53.3567L100.57 53.3586L90.7125 
+                        76.7169L90.7105 76.7217C89.6754 79.2101 89.125 81.8912 89.125 84.5973V85.1797C89.125 87.2971 87.4217 89 
+                        85.2969 89H37.0156C34.8908 89 33.1875 87.2971 33.1875 85.1797V83.834C33.1875 80.7956 31.8776 77.8934 29.6138 
+                        75.8769L29.6124 75.8758L7.14308 55.9332C7.14278 55.9329 7.14248 55.9326 7.14219 55.9324C3.23083 52.446 1 47.4755 
+                        1 42.259V28.9229C1 24.1014 4.94524 20.2113 9.8 20.2821C14.5282 20.3729 18.3125 24.3296 18.3125 
+                        29.0835V38.7442V39.1942L18.6493 39.4927L20.2587 40.9187L21.9219 42.3924V40.1702V12.8552C21.9219 8.03368 25.8672 
+                        4.14356 30.7221 4.21449C35.4502 4.30533 39.2344 8.26207 39.2344 13.0159V19.2823V20.2823H40.2344H41.8438H42.8438V19.2823V9.64169C42.8438 
+                        4.82014 46.7891 0.930014 51.644 1.00096C56.3721 1.09182 60.1562 5.04855 60.1562 9.80236V19.2823V20.2823H61.1562H62.7656H63.7656V19.2823V12.8552C63.7656 
+                        8.03368 67.711 4.14355 72.5659 4.21449C77.294 4.30533 81.0781 8.26207 81.0781 13.0159V19.2823V20.2823H82.0781H83.6875Z" stroke="none" stroke-width="2"/>
+                    </svg>
+    
+                    <!-- Paper svg -->
+                    
+                    <svg id="paperMove-comp" class="moveHidden" width="88" height="100" viewBox="0 0 88 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="compPaper" d="M71.875 51H72.875V50V32.9668C72.875 29.1205 76.0256 25.9286 79.8209 26.0012C83.5216 26.0721 86.5 29.0945 86.4998 32.8125V62.1795C86.4998
+                        64.9942 86.1742 67.7995 85.5295 70.5394L80.3522 92.5432C79.462 96.3263 76.0861 99 72.1998 99H33.608C32.287 99 30.9848 98.6875 29.8077 98.0881C28.6305
+                        97.4886 27.6119 96.6193 26.8349 95.5509L2.30349 61.8195C2.30349 61.8195 2.30348 61.8195 2.30348 61.8195C0.0905955 58.7765 0.763358 54.5159 3.80599 
+                        52.3029C6.84918 50.0899 11.1097 50.7628 13.3225 53.8056L19.5037 62.3054L21.3125 64.7926V61.7172V15.625C21.3125 11.907 24.291 8.88457 27.9916 
+                        8.81372C31.7869 8.74112 34.9375 11.933 34.9375 15.7793V50V51H35.9375H37.5H38.5V50V7.81254C38.5 4.09453 41.4785 1.07207 45.1791 1.00122C48.9744 
+                        0.928619 52.125 4.12051 52.125 7.96684V50V51H53.125H54.6875H55.6875V50V15.4297C55.6875 11.7117 58.666 8.68925 62.3666 8.61841C66.1619 8.5458 69.3125
+                        11.7377 69.3125 15.584V50V51H70.3125H71.875Z" stroke="none" stroke-width="2"/>
+                    </svg>
+    
+                    <!-- Scissors svg -->
+                    <svg id="scissorsMove-comp" class="moveHidden" width="104" height="92" viewBox="0 0 104 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="compScissors" d="M51 34.406V35.3752H11.375C5.64498 35.3752 1 40.0201 1 45.7502C1 51.4802 5.64498 56.1252 11.375 56.1252H43.0002C39.4798 57.2803 36.9375 60.5933 
+                        36.9375 64.5002C36.9375 69.3673 40.8831 73.3127 45.75 73.3127H49.2502C45.7298 74.4678 43.1875 77.7808 43.1875 81.6877C43.1875 86.5548 47.1331 90.5002 52 
+                        90.5002H67.6249C68.3045 90.5002 68.9819 90.4216 69.6435 90.266L96.206 84.016C100.187 83.0794 103 79.5271 103 75.4377V28.5627C103 27.0091 102.589 25.4832 
+                        101.81 24.1395C101.03 22.7958 99.9089 21.6821 98.5601 20.9112L98.56 20.9112L76.685 8.41122C72.917 6.25786 68.1424 7.16868 65.4313 10.5573L65.4312 
+                        10.5573L61.0339 16.054L24.5438 1.72096C24.5438 1.72095 24.5437 1.72095 24.5437 1.72094C19.2106 -0.374108 13.1886 2.25049 11.0935 7.58373C8.99836 12.9167 
+                        11.6232 18.9387 16.9564 21.034L16.9565 21.034L51 34.406Z" stroke="none" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="winnerLoser">
+                <p id="winner"></p>
+            </div>
+
+            <div class="buttonSection">
+                <div class="optionWrapper">
+                    <input type="image" name="button" value="rock" class="optButton" src="images/rockButton.svg">
+                    <p class="choicePara">Rock</p>
+                </div>
+                <div class="optionWrapper">
+                    <input type="image" name="button" value="paper" class="optButton" src="images/paperButton.svg">
+                    <p class="choicePara">Paper</p>
+                </div>
+                <div class="optionWrapper"> 
+                    <input type="image" name="button" value="scissors" class="optButton" src="images/scissorsButton.svg">
+                    <p class="choicePara">Scissors</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
 </body>
 </html>
